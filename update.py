@@ -32,6 +32,7 @@ def snakeUpdate():
 		
 	
 	for i, segment in enumerate(snakeSegmentLocations):
+		print(i)
 		#Moving the head of the snake
 		if(i == 0):
 			segment.posx += dx
@@ -42,17 +43,21 @@ def snakeUpdate():
 				exit(0)
 			elif segment.posy < 0 or segment.posy > resolution:
 				exit(0)
-			pygame.draw.rect(canvas, BLACK, (segment.posx, segment.posy, segment.size, segment.size))
+			#pygame.draw.rect(canvas, BLACK, (segment.posx, segment.posy, segment.size, segment.size))
+		#Different logic for moving the rest of the segments that aren't the head
 		else:
-			segment.posx += dx
-			segment.posy += dy
-			# segment.posx = snakeSegmentLocations[i-1].posx
-			# segment.posy = snakeSegmentLocations[i-1].posy
+			# segment.posx = snakeSegmentLocations[i - 1].posx
+			# segment.posy = snakeSegmentLocations[i - 1].posy
+			segment = snakeSegment(snakeSegmentLocations[i - 1].posx, snakeSegmentLocations[i - 1].posy, 10)
+			# segment.posx += dx
+			# segment.posy += dy
 			if(segment.posx < 0 or segment.posx > resolution):
 				exit(0)
 			elif segment.posy < 0 or segment.posy > resolution:
 				exit(0)
-			pygame.draw.rect(canvas, BLACK, (segment.posx, segment.posy, segment.size, segment.size))
+			#pygame.draw.rect(canvas, BLACK, (segment.posx, segment.posy, segment.size, segment.size))
+	for segment in snakeSegmentLocations:
+		pygame.draw.rect(canvas, BLACK, (segment.posx, segment.posy, segment.size, segment.size))
 
 
 
@@ -64,7 +69,7 @@ def appleUpdate():
 			distance = math.sqrt((apple.posx-snakeSegmentLocations[0].posx)**2 + (apple.posy-snakeSegmentLocations[0].posy)**2)
 			if(distance < 10):
 				appleLocation.remove(apple)
-				#Determine the new coords for which to place the news segment
+				#Determine the new coords for which to place the new segment
 				newPosx = snakeSegmentLocations[len(snakeSegmentLocations)-1].posx
 				newPosy = snakeSegmentLocations[len(snakeSegmentLocations)-1].posy
 
