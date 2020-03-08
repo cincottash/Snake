@@ -69,7 +69,6 @@ def snakeUpdate():
 def draw(snakeSegmentLocations):
 	print(len(snakeSegmentLocations))
 	for i,segment in enumerate(snakeSegmentLocations):
-		#print("Segment {} location: {}".format(i, segment))
 		pygame.draw.rect(canvas, BLACK, (segment[0], segment[1], 15, 15))
 
 
