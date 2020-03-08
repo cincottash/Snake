@@ -1,6 +1,4 @@
 from globals import *
-from segment import *
-from apple import *
 from setup import *
 
 import sys
@@ -18,4 +16,4 @@ canvas = pygame.display.set_mode((resolution,resolution))
 
 snakeSegmentLocations.append([resolution/2, resolution/2])
 
-appleLocation.append(Apple(random.randint(11, resolution-11), random.randint(11, resolution-11), 10))
+appleLocation.append([random.randint(11, resolution-11), random.randint(11, resolution-11)])

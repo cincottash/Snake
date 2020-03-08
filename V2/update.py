@@ -1,8 +1,6 @@
 from globals import *
-from segment import *
-from apple import *
 from setup import *
-
+import math
 global dy
 global dx 
 
@@ -46,12 +44,15 @@ def snakeUpdate():
 
 def appleUpdate():
 	if(len(appleLocation) == 0):
-		appleLocation.append(Apple(random.randint(0, resolution), random.randint(0, resolution), 10))
+		appleLocation.append([random.randint(11, resolution-11), random.randint(11, resolution-11)])
 	else:
+		print(len(appleLocation))
 		for apple in appleLocation:
-			distance = math.sqrt((apple.posx-snakeSegmentLocations[0][0])**2 + (apple.posy-snakeSegmentLocations[0][1])**2)
+			distance = math.sqrt((apple[0]-snakeSegmentLocations[0][0])**2 + (apple[1]-snakeSegmentLocations[0][1])**2)
 			if(distance < 10):
 				appleLocation.remove(apple)
+
+
 			else:
-				pygame.draw.rect(canvas, RED, (apple.posx, apple.posy, apple.size, apple.size))
+				pygame.draw.rect(canvas, RED, (apple[0], apple[1], 10, 10))
 
