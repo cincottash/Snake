@@ -19,15 +19,15 @@ def snakeUpdate():
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_DOWN:
 				dx = 0
-				dy = 10
+				dy = 15
 			elif event.key == pygame.K_UP:
 				dx = 0
-				dy = -10
+				dy = -15
 			elif event.key == pygame.K_LEFT:
-				dx = -10
+				dx = -15
 				dy = 0
 			elif event.key == pygame.K_RIGHT:
-				dx = 10
+				dx = 15
 				dy = 0
 
 	#Moving the head of the snake
@@ -43,40 +43,40 @@ def snakeUpdate():
 	#Add growth
 	if(foundApple):
 		#Moving down
-		if(dx == 0 and dy == 10):
+		if(dx == 0 and dy == 15):
 			snakeSegmentLocations.insert(0,[snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 
 		#Moving up
-		elif(dx == 0 and dy == -10):
+		elif(dx == 0 and dy == -15):
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 
 		#Moving left
-		elif(dx == -10 and dy == 0):
+		elif(dx == -15 and dy == 0):
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 
 		#Moving right
-		elif(dx == 10 and dy == 0):
+		elif(dx == 15 and dy == 0):
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 
 	#Moving down
 	elif(len(snakeSegmentLocations) > 1):
 		#print("here")
-		if(dx == 0 and dy == 10):
+		if(dx == 0 and dy == 15):
 			snakeSegmentLocations.pop()
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 								
 		#Moving up
-		elif(dx == 0 and dy == -10):
+		elif(dx == 0 and dy == -15):
 			snakeSegmentLocations.pop()
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 			#snakeSegmentLocations.pop()
 
 		#Moving left
-		elif(dx == -10 and dy == 0):
+		elif(dx == -15 and dy == 0):
 			snakeSegmentLocations.pop()
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 		#Moving right
-		elif(dx == 10 and dy == 0):
+		elif(dx == 15 and dy == 0):
 			snakeSegmentLocations.pop()
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 	draw(snakeSegmentLocations)
@@ -85,7 +85,7 @@ def draw(snakeSegmentLocations):
 	print(len(snakeSegmentLocations))
 	for i,segment in enumerate(snakeSegmentLocations):
 		#print("Segment {} location: {}".format(i, segment))
-		pygame.draw.rect(canvas, BLACK, (segment[0], segment[1], 10, 10))
+		pygame.draw.rect(canvas, BLACK, (segment[0], segment[1], 15, 15))
 
 
 def appleUpdate():
@@ -100,5 +100,5 @@ def appleUpdate():
 				appleLocation.remove(apple)
 				foundApple = True
 			else:
-				pygame.draw.rect(canvas, RED, (apple[0], apple[1], 10, 10))
+				pygame.draw.rect(canvas, RED, (apple[0], apple[1], 15, 15))
 

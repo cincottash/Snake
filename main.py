@@ -9,7 +9,7 @@ def main():
 		
 		pygame.display.update()
 		#time.sleep(0.075)
-		clock.tick(10)
+		clock.tick(15)
 
 
 if __name__ == '__main__':
