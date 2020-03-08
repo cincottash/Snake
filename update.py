@@ -2,10 +2,12 @@ from globals import *
 from setup import *
 import math
 global foundApple
+global direction
 global dy
 global dx 
 
 foundApple = False
+direction = "None"
 dy = 0
 dx = 0
 
@@ -13,22 +15,31 @@ def snakeUpdate():
 	global dy
 	global dx
 	global foundApple
+	global direction
 	canvas.fill(WHITE)
 
 	for event in pygame.event.get():	
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_DOWN:
-				dx = 0
-				dy = 15
+				if(direction != "Up"):
+					dx = 0
+					dy = 15
+					direction = "Down"
 			elif event.key == pygame.K_UP:
-				dx = 0
-				dy = -15
+				if(direction != "Down"):
+					dx = 0
+					dy = -15
+					direction = "Up"
 			elif event.key == pygame.K_LEFT:
-				dx = -15
-				dy = 0
+				if(direction != "Right"):
+					dx = -15
+					dy = 0
+					direction = "Left"
 			elif event.key == pygame.K_RIGHT:
-				dx = 15
-				dy = 0
+				if(direction != "Left"):
+					dx = 15
+					dy = 0
+					direction = "Right"
 
 	#Moving the head of the snake
 	snakeSegmentLocations[0][0] += dx
