@@ -49,44 +49,46 @@ def snakeUpdate():
 			if(foundApple):
 				#Moving down
 				if(dx == 0 and dy == 0.25):
-
-					# print("old head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
-					
 					snakeSegmentLocations.insert(0,[snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] + 10])
 
-					# print("new head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
-					
 				#Moving up
 				elif(dx == 0 and dy == -0.25):
-					# print("old head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
-					
 					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] - 10])
 
-					# print("new head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
 				#Moving left
 				elif(dx == -0.25 and dy == 0):
-					# print("old head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
-					
 					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] - 10, snakeSegmentLocations[0][1]])
 
-					# print("new head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
 				#Moving right
 				elif(dx == 0.25 and dy == 0):
-					# print("old head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
-					
-					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
+					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] + 10, snakeSegmentLocations[0][1]])
+				foundApple = False
 
-					# print("new head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
 		else:
-			print("old: {}".format(snakeSegmentLocations[i]))
+			#Moving down
+			if(dx == 0 and dy == 0.25):
+				snakeSegmentLocations.pop()
+				snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] + 10])
+									
+			#Moving up
+			elif(dx == 0 and dy == -0.25):
+				snakeSegmentLocations.pop()
+				snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] - 10])
+				#snakeSegmentLocations.pop()
 
-			snakeSegmentLocations[i] = snakeSegmentLocations[i - 1]
-
-			print("new: {}".format(snakeSegmentLocations[i]))
-		pygame.draw.rect(canvas, BLACK, (snakeSegmentLocations[i][0], snakeSegmentLocations[i][1], 10, 10))
-
+			#Moving left
+			elif(dx == -0.25 and dy == 0):
+				snakeSegmentLocations.pop()
+				snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] - 10, snakeSegmentLocations[0][1]])
+			#Moving right
+			elif(dx == 0.25 and dy == 0):
+				snakeSegmentLocations.pop()
+				snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] + 10, snakeSegmentLocations[0][1]])
 
 		i -= 1
+	for i,segment in enumerate(snakeSegmentLocations):
+		print("Segment {} location: {}".format(i, segment))
+		pygame.draw.rect(canvas, BLACK, (segment[0], segment[1], 10, 10))
 
 
 def appleUpdate():

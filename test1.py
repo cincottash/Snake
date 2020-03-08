@@ -5,8 +5,8 @@ myList.append([1, 1])
 
 for item in myList:
 	print(item)
-
-myList[1] = [2, 2]
+print("#########")
+myList.insert(0, [2, 2])
 
 for item in myList:
 	print(item)

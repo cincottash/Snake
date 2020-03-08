@@ -7,7 +7,7 @@ def main():
 		appleUpdate()
 		
 		pygame.display.update()
-		#time.sleep(0.025)
+		#time.sleep(0.0025)
 
 
 if __name__ == '__main__':
