@@ -5,6 +5,7 @@ from segment import *
 
 global dy
 global dx 
+global snakeSegmentLocations
 import math
 
 dy = 0
@@ -13,6 +14,7 @@ dx = 0
 def snakeUpdate():
 	global dy
 	global dx
+	global snakeSegmentLocations
 	canvas.fill(WHITE)
 
 	for event in pygame.event.get():	
@@ -32,7 +34,7 @@ def snakeUpdate():
 		
 	
 	for i, segment in enumerate(snakeSegmentLocations):
-		print(i)
+		#print(i)
 		#Moving the head of the snake
 		if(i == 0):
 			segment.posx += dx
@@ -46,18 +48,19 @@ def snakeUpdate():
 			#pygame.draw.rect(canvas, BLACK, (segment.posx, segment.posy, segment.size, segment.size))
 		#Different logic for moving the rest of the segments that aren't the head
 		else:
-			# segment.posx = snakeSegmentLocations[i - 1].posx
-			# segment.posy = snakeSegmentLocations[i - 1].posy
+			#TODO: Fix this the rest of the snake segments (besides the head) arent actually moving
+			#THis doesnt actualy update for some reason
 			segment = snakeSegment(snakeSegmentLocations[i - 1].posx, snakeSegmentLocations[i - 1].posy, 10)
-			# segment.posx += dx
-			# segment.posy += dy
 			if(segment.posx < 0 or segment.posx > resolution):
 				exit(0)
 			elif segment.posy < 0 or segment.posy > resolution:
 				exit(0)
 			#pygame.draw.rect(canvas, BLACK, (segment.posx, segment.posy, segment.size, segment.size))
+	
 	for segment in snakeSegmentLocations:
+		
 		pygame.draw.rect(canvas, BLACK, (segment.posx, segment.posy, segment.size, segment.size))
+	print(len(snakeSegmentLocations))
 
 
 
