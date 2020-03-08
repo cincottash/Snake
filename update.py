@@ -44,41 +44,41 @@ def snakeUpdate():
 	if(foundApple):
 		#Moving down
 		if(dx == 0 and dy == 10):
-			snakeSegmentLocations.insert(0,[snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] + 10])
+			snakeSegmentLocations.insert(0,[snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 
 		#Moving up
 		elif(dx == 0 and dy == -10):
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] - 10])
+			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 
 		#Moving left
 		elif(dx == -10 and dy == 0):
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] - 10, snakeSegmentLocations[0][1]])
+			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 
 		#Moving right
 		elif(dx == 10 and dy == 0):
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] + 10, snakeSegmentLocations[0][1]])
+			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 
 	#Moving down
 	elif(len(snakeSegmentLocations) > 1):
 		#print("here")
 		if(dx == 0 and dy == 10):
 			snakeSegmentLocations.pop()
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] + 10])
+			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 								
 		#Moving up
 		elif(dx == 0 and dy == -10):
 			snakeSegmentLocations.pop()
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] - 10])
+			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 			#snakeSegmentLocations.pop()
 
 		#Moving left
 		elif(dx == -10 and dy == 0):
 			snakeSegmentLocations.pop()
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] - 10, snakeSegmentLocations[0][1]])
+			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 		#Moving right
 		elif(dx == 10 and dy == 0):
 			snakeSegmentLocations.pop()
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] + 10, snakeSegmentLocations[0][1]])
+			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 	draw(snakeSegmentLocations)
 
 def draw(snakeSegmentLocations):
