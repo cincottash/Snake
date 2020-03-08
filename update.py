@@ -25,11 +25,11 @@ def snakeUpdate():
 				dx = 0
 				dy = -0.25
 			elif event.key == pygame.K_LEFT:
-				dy = 0
 				dx = -0.25
-			elif event.key == pygame.K_RIGHT:
 				dy = 0
+			elif event.key == pygame.K_RIGHT:
 				dx = 0.25
+				dy = 0
 	 
 	for i,coordinate in enumerate(snakeSegmentLocations):
 		#Moving the head of the snake
@@ -43,11 +43,25 @@ def snakeUpdate():
 			elif snakeSegmentLocations[i][1] < 0 or snakeSegmentLocations[i][1] > resolution:
 				exit(0)
 
-			#TODO: Add collision detection of head on apple.
+			#Add growth
 			if(foundApple):
-				print("foundApple")
+				#Moving down
+				if(dx == 0 and dy == 0.25):
+					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] + 10])
+				#Moving up
+				elif(dx == 0 and dy == -0.25):
+					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] - 10])
+				#Moving left
+				elif(dx == -0.25 and dy == 0):
+					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] - 10, snakeSegmentLocations[0][1]])
+				#Moving right
+				elif(dx == 0.25 and dy == 0):
+					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] + 10, snakeSegmentLocations[0][1]])
+		else:
+			snakeSegmentLocations[i][0] = resolution/2
+			snakeSegmentLocations[i][1] = resolution/2
 
-			pygame.draw.rect(canvas, BLACK, (snakeSegmentLocations[i][0], snakeSegmentLocations[i][1], 10, 10))
+		pygame.draw.rect(canvas, BLACK, (snakeSegmentLocations[i][0], snakeSegmentLocations[i][1], 10, 10))
 
 
 def appleUpdate():
