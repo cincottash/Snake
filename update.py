@@ -1,20 +1,16 @@
 from globals import *
 from setup import *
-from segment import * 
-# from apple import *
-
+import math
 global dy
 global dx 
-global snakeSegmentLocations
-import math
 
 dy = 0
 dx = 0
 
 def snakeUpdate():
+	#print(len(snakeSegmentLocations))
 	global dy
 	global dx
-	global snakeSegmentLocations
 	canvas.fill(WHITE)
 
 	for event in pygame.event.get():	
@@ -31,62 +27,31 @@ def snakeUpdate():
 			elif event.key == pygame.K_RIGHT:
 				dy = 0
 				dx = 0.25
-		
-	
-	for i, segment in enumerate(snakeSegmentLocations):
-		#print(i)
+	 
+	for i,coordinate in enumerate(snakeSegmentLocations):
 		#Moving the head of the snake
 		if(i == 0):
-			segment.posx += dx
-			segment.posy += dy
+			snakeSegmentLocations[i][0] += dx
+			snakeSegmentLocations[i][1] += dy
 			#Boundary check
 
-			if(segment.posx < 0 or segment.posx > resolution):
+			if(snakeSegmentLocations[i][0] < 0 or snakeSegmentLocations[i][0] > resolution):
 				exit(0)
-			elif segment.posy < 0 or segment.posy > resolution:
+			elif snakeSegmentLocations[i][1] < 0 or snakeSegmentLocations[i][1] > resolution:
 				exit(0)
-			#pygame.draw.rect(canvas, BLACK, (segment.posx, segment.posy, segment.size, segment.size))
-		#Different logic for moving the rest of the segments that aren't the head
-		else:
-			#TODO: Fix this the rest of the snake segments (besides the head) arent actually moving
-			#THis doesnt actualy update for some reason
-			segment = snakeSegment(snakeSegmentLocations[i - 1].posx, snakeSegmentLocations[i - 1].posy, 10)
-			if(segment.posx < 0 or segment.posx > resolution):
-				exit(0)
-			elif segment.posy < 0 or segment.posy > resolution:
-				exit(0)
-			#pygame.draw.rect(canvas, BLACK, (segment.posx, segment.posy, segment.size, segment.size))
-	
-	for segment in snakeSegmentLocations:
-		
-		pygame.draw.rect(canvas, BLACK, (segment.posx, segment.posy, segment.size, segment.size))
-	print(len(snakeSegmentLocations))
-
+			pygame.draw.rect(canvas, BLACK, (snakeSegmentLocations[i][0], snakeSegmentLocations[i][1], 10, 10))
 
 
 def appleUpdate():
 	if(len(appleLocation) == 0):
-		appleLocation.append(Apple(random.randint(0, resolution), random.randint(0, resolution), 10))
+		appleLocation.append([random.randint(11, resolution-11), random.randint(11, resolution-11)])
 	else:
 		for apple in appleLocation:
-			distance = math.sqrt((apple.posx-snakeSegmentLocations[0].posx)**2 + (apple.posy-snakeSegmentLocations[0].posy)**2)
+			distance = math.sqrt((apple[0]-snakeSegmentLocations[0][0])**2 + (apple[1]-snakeSegmentLocations[0][1])**2)
 			if(distance < 10):
 				appleLocation.remove(apple)
-				#Determine the new coords for which to place the new segment
-				newPosx = snakeSegmentLocations[len(snakeSegmentLocations)-1].posx
-				newPosy = snakeSegmentLocations[len(snakeSegmentLocations)-1].posy
 
-				#Moving down
-				if(dx == 0 and dy == 0.25):
-					snakeSegmentLocations.append(snakeSegment(newPosx, newPosy-11, 10))
-				#Moving up
-				elif(dx == 0 and dy == -0.25):
-					snakeSegmentLocations.append(snakeSegment(newPosx, newPosy+11, 10))
-				#Moving left
-				elif(dx == -0.25 and dy == 0):
-					snakeSegmentLocations.append(snakeSegment(newPosx+11, newPosy, 10))
-				elif(dx == 0.25 and dy == 0):
-					snakeSegmentLocations.append(snakeSegment(newPosx-11, newPosy, 10))
+
 			else:
-				pygame.draw.rect(canvas, RED, (apple.posx, apple.posy, apple.size, apple.size))
+				pygame.draw.rect(canvas, RED, (apple[0], apple[1], 10, 10))
 
