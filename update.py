@@ -57,22 +57,22 @@ def snakeUpdate():
 
 	elif(len(snakeSegmentLocations) > 1):
 		#Moving down
-		if(dx == 0 and dy == 15):
+		if(direction == "Down"):
 			snakeSegmentLocations.pop()
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 								
 		#Moving up
-		elif(dx == 0 and dy == -15):
+		elif(direction == "Up"):
 			snakeSegmentLocations.pop()
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 			#snakeSegmentLocations.pop()
 
 		#Moving left
-		elif(dx == -15 and dy == 0):
+		elif(direction == "Left"):
 			snakeSegmentLocations.pop()
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 		#Moving right
-		elif(dx == 15 and dy == 0):
+		elif(direction == "Right"):
 			snakeSegmentLocations.pop()
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 	#Check for overlap on yourself
