@@ -50,7 +50,7 @@ def snakeUpdate():
 		exit(0)
 	elif snakeSegmentLocations[0][1] < 0 or snakeSegmentLocations[0][1] > resolution:
 		exit(0)
-
+	
 	if(foundApple):
 		snakeSegmentLocations.insert(0,[snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 
