@@ -16,8 +16,8 @@ canvas = pygame.display.set_mode((resolution,resolution))
 
 snakeSegmentLocations = []
 
-appleLocations = []
+appleLocation = []
 
 snakeSegmentLocations.append(snakeSegment(resolution/2, resolution/2, 10))
 
-appleLocations.append(Apple(random.randint(11, resolution-11), random.randint(11, resolution-11), 10))
+appleLocation.append(Apple(random.randint(11, resolution-11), random.randint(11, resolution-11), 10))
