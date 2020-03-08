@@ -39,6 +39,12 @@ def snakeUpdate():
 				exit(0)
 			elif snakeSegmentLocations[i][1] < 0 or snakeSegmentLocations[i][1] > resolution:
 				exit(0)
+
+			#TODO: Add collision detection of head on apple.
+			for apple in appleLocation:
+				distance = math.sqrt((apple[0]-snakeSegmentLocations[0][0])**2 + (apple[1]-snakeSegmentLocations[0][1])**2)
+				if(distance < 10):
+					print("found apple")
 			pygame.draw.rect(canvas, BLACK, (snakeSegmentLocations[i][0], snakeSegmentLocations[i][1], 10, 10))
 
 
@@ -50,8 +56,6 @@ def appleUpdate():
 			distance = math.sqrt((apple[0]-snakeSegmentLocations[0][0])**2 + (apple[1]-snakeSegmentLocations[0][1])**2)
 			if(distance < 10):
 				appleLocation.remove(apple)
-
-
 			else:
 				pygame.draw.rect(canvas, RED, (apple[0], apple[1], 10, 10))
 
