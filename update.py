@@ -42,25 +42,10 @@ def snakeUpdate():
 
 	#Add growth
 	if(foundApple):
-		#Moving down
-		if(dx == 0 and dy == 15):
-			snakeSegmentLocations.insert(0,[snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
+		snakeSegmentLocations.insert(0,[snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 
-		#Moving up
-		elif(dx == 0 and dy == -15):
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
-
-		#Moving left
-		elif(dx == -15 and dy == 0):
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
-
-		#Moving right
-		elif(dx == 15 and dy == 0):
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
-
-	#Moving down
 	elif(len(snakeSegmentLocations) > 1):
-		#print("here")
+		#Moving down
 		if(dx == 0 and dy == 15):
 			snakeSegmentLocations.pop()
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
@@ -91,7 +76,7 @@ def draw(snakeSegmentLocations):
 def appleUpdate():
 	global foundApple
 	if(len(appleLocation) == 0):
-		appleLocation.append([random.randint(11, resolution-11), random.randint(11, resolution-11)])
+		appleLocation.append([random.randint(15, resolution-15), random.randint(15, resolution-15)])
 		foundApple = False
 	else:
 		for apple in appleLocation:
