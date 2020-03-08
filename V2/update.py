@@ -30,19 +30,18 @@ def snakeUpdate():
 				dy = 0
 				dx = 0.25
 	 
-	for i in range(len(snakeSegmentLocations)):
+	for i,coordinate in enumerate(snakeSegmentLocations):
 		#Moving the head of the snake
 		if(i == 0):
-			
-			snakeSegmentLocations[i].posx += dx
-			snakeSegmentLocations[i].posy += dy
+			snakeSegmentLocations[i][0] += dx
+			snakeSegmentLocations[i][1] += dy
 			#Boundary check
 
-			if(snakeSegmentLocations[i].posx < 0 or snakeSegmentLocations[i].posx > resolution):
+			if(snakeSegmentLocations[i][0] < 0 or snakeSegmentLocations[i][0] > resolution):
 				exit(0)
-			elif snakeSegmentLocations[i].posy < 0 or snakeSegmentLocations[i].posy > resolution:
+			elif snakeSegmentLocations[i][1] < 0 or snakeSegmentLocations[i][1] > resolution:
 				exit(0)
-			pygame.draw.rect(canvas, BLACK, (snakeSegmentLocations[i].posx, snakeSegmentLocations[i].posy, snakeSegmentLocations[i].size, snakeSegmentLocations[i].size))
+			pygame.draw.rect(canvas, BLACK, (snakeSegmentLocations[i][0], snakeSegmentLocations[i][1], 10, 10))
 
 
 def appleUpdate():
@@ -50,7 +49,7 @@ def appleUpdate():
 		appleLocation.append(Apple(random.randint(0, resolution), random.randint(0, resolution), 10))
 	else:
 		for apple in appleLocation:
-			distance = math.sqrt((apple.posx-snakeSegmentLocations[0].posx)**2 + (apple.posy-snakeSegmentLocations[0].posy)**2)
+			distance = math.sqrt((apple.posx-snakeSegmentLocations[0][0])**2 + (apple.posy-snakeSegmentLocations[0][1])**2)
 			if(distance < 10):
 				appleLocation.remove(apple)
 			else:
