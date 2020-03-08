@@ -64,6 +64,11 @@ def snakeUpdate():
 		elif(dx == 15 and dy == 0):
 			snakeSegmentLocations.pop()
 			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
+	#Check for overlap on yourself
+	for i,segment in enumerate(snakeSegmentLocations):
+		if(segment == snakeSegmentLocations[0] and (i > 1)):
+			exit(0)
+	
 	draw(snakeSegmentLocations)
 
 def draw(snakeSegmentLocations):
