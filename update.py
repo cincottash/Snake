@@ -30,8 +30,10 @@ def snakeUpdate():
 			elif event.key == pygame.K_RIGHT:
 				dx = 0.25
 				dy = 0
-	 
-	for i,coordinate in enumerate(snakeSegmentLocations):
+	i = len(snakeSegmentLocations) - 1
+	
+	
+	for coordinate in snakeSegmentLocations[::-1]:
 		#Moving the head of the snake
 		if(i == 0):
 			snakeSegmentLocations[i][0] += dx
@@ -47,21 +49,44 @@ def snakeUpdate():
 			if(foundApple):
 				#Moving down
 				if(dx == 0 and dy == 0.25):
-					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] + 10])
+
+					# print("old head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
+					
+					snakeSegmentLocations.insert(0,[snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] + 10])
+
+					# print("new head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
+					
 				#Moving up
 				elif(dx == 0 and dy == -0.25):
+					# print("old head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
+					
 					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1] - 10])
+
+					# print("new head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
 				#Moving left
 				elif(dx == -0.25 and dy == 0):
+					# print("old head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
+					
 					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] - 10, snakeSegmentLocations[0][1]])
+
+					# print("new head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
 				#Moving right
 				elif(dx == 0.25 and dy == 0):
-					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0] + 10, snakeSegmentLocations[0][1]])
-		else:
-			snakeSegmentLocations[i][0] = resolution/2
-			snakeSegmentLocations[i][1] = resolution/2
+					# print("old head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
+					
+					snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 
+					# print("new head: {}".format([snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]]))
+		else:
+			print("old: {}".format(snakeSegmentLocations[i]))
+
+			snakeSegmentLocations[i] = snakeSegmentLocations[i - 1]
+
+			print("new: {}".format(snakeSegmentLocations[i]))
 		pygame.draw.rect(canvas, BLACK, (snakeSegmentLocations[i][0], snakeSegmentLocations[i][1], 10, 10))
+
+
+		i -= 1
 
 
 def appleUpdate():

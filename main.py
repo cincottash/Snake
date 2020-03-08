@@ -1,12 +1,13 @@
 from globals import *
 from update import *
-
+import time
 def main():
 	while True:
 		snakeUpdate()
 		appleUpdate()
 		
 		pygame.display.update()
+		#time.sleep(0.025)
 
 
 if __name__ == '__main__':
