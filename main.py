@@ -9,6 +9,7 @@ def main():
 		appleUpdate()
 		
 		pygame.display.update()
+		
 		clock.tick(15)
 
 

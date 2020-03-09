@@ -7,7 +7,7 @@ RED = (255, 0, 0)
 
 delta = 10
 
-snakeSize = 10
+snakeSize = 15
 
 snakeSegmentLocations = []
 

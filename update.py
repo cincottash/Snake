@@ -11,6 +11,11 @@ direction = "None"
 dy = 0
 dx = 0
 
+def draw(snakeSegmentLocations):
+	print(len(snakeSegmentLocations))
+	for i,segment in enumerate(snakeSegmentLocations):
+		pygame.draw.rect(canvas, BLACK, (segment[0], segment[1], snakeSize, snakeSize))
+
 def snakeUpdate():
 	global dy
 	global dx
@@ -23,21 +28,21 @@ def snakeUpdate():
 			if event.key == pygame.K_DOWN:
 				if(direction != "Up"):
 					dx = 0
-					dy = 15
+					dy = snakeSize
 					direction = "Down"
 			elif event.key == pygame.K_UP:
 				if(direction != "Down"):
 					dx = 0
-					dy = -15
+					dy = -snakeSize
 					direction = "Up"
 			elif event.key == pygame.K_LEFT:
 				if(direction != "Right"):
-					dx = -15
+					dx = -snakeSize
 					dy = 0
 					direction = "Left"
 			elif event.key == pygame.K_RIGHT:
 				if(direction != "Left"):
-					dx = 15
+					dx = snakeSize
 					dy = 0
 					direction = "Right"
 
@@ -48,11 +53,12 @@ def snakeUpdate():
 	#Boundary check
 	if(snakeSegmentLocations[0][0] < 0 or snakeSegmentLocations[0][0] > resolution):
 		exit(0)
-	elif snakeSegmentLocations[0][1] < 0 or snakeSegmentLocations[0][1] > resolution:
+	elif (snakeSegmentLocations[0][1] < 0 or snakeSegmentLocations[0][1] > resolution):
 		exit(0)
-	
+
 	if(foundApple):
 		snakeSegmentLocations.insert(0,[snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
+		foundApple = False
 
 	elif(len(snakeSegmentLocations) > 1):
 		if(direction == "Down"):
@@ -78,23 +84,19 @@ def snakeUpdate():
 	
 	draw(snakeSegmentLocations)
 
-def draw(snakeSegmentLocations):
-	print(len(snakeSegmentLocations))
-	for i,segment in enumerate(snakeSegmentLocations):
-		pygame.draw.rect(canvas, BLACK, (segment[0], segment[1], 15, 15))
 
 
 def appleUpdate():
 	global foundApple
 	if(len(appleLocation) == 0):
-		appleLocation.append([random.randint(15, resolution-15), random.randint(15, resolution-15)])
-		foundApple = False
+		appleLocation.append([random.randint(snakeSize, resolution-snakeSize), random.randint(snakeSize, resolution-snakeSize)])
+		
 	else:
 		for apple in appleLocation:
 			distance = math.sqrt((apple[0]-snakeSegmentLocations[0][0])**2 + (apple[1]-snakeSegmentLocations[0][1])**2)
-			if(distance < 15):
+			if(distance < snakeSize):
 				appleLocation.remove(apple)
 				foundApple = True
 			else:
-				pygame.draw.rect(canvas, RED, (apple[0], apple[1], 15, 15))
+				pygame.draw.rect(canvas, RED, (apple[0], apple[1], snakeSize, snakeSize))
 
