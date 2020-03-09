@@ -12,9 +12,12 @@ dy = 0
 dx = 0
 
 def draw(snakeSegmentLocations):
-	print(len(snakeSegmentLocations))
-	for i,segment in enumerate(snakeSegmentLocations):
+	#print(len(snakeSegmentLocations))
+	i = 1
+	for segment in snakeSegmentLocations:
+		print(i)
 		pygame.draw.rect(canvas, BLACK, (segment[0], segment[1], snakeSize, snakeSize))
+		i += 1
 
 def snakeUpdate():
 	global dy
