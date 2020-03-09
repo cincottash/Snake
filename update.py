@@ -61,21 +61,8 @@ def snakeUpdate():
 		foundApple = False
 
 	elif(len(snakeSegmentLocations) > 1):
-		if(direction == "Down"):
-			snakeSegmentLocations.pop()
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
-								
-		elif(direction == "Up"):
-			snakeSegmentLocations.pop()
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
-
-		elif(direction == "Left"):
-			snakeSegmentLocations.pop()
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
-
-		elif(direction == "Right"):
-			snakeSegmentLocations.pop()
-			snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
+		snakeSegmentLocations.pop()
+		snakeSegmentLocations.insert(0, [snakeSegmentLocations[0][0], snakeSegmentLocations[0][1]])
 	
 	#Check for overlap on yourself
 	for i,segment in enumerate(snakeSegmentLocations):
