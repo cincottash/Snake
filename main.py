@@ -6,7 +6,6 @@ clock = pygame.time.Clock()
 def main():
 	while True:
 		snakeUpdate()
-		pygame.display.update()
 		appleUpdate()
 		pygame.display.update()
 		

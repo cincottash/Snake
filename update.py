@@ -1,5 +1,6 @@
 from globals import *
 from setup import *
+from exceptions import *
 import math
 global foundApple
 global direction
@@ -12,12 +13,8 @@ dy = 0
 dx = 0
 
 def draw(snakeSegmentLocations):
-	#print(len(snakeSegmentLocations))
-	i = 1
 	for segment in snakeSegmentLocations:
-		print(i)
 		pygame.draw.rect(canvas, BLACK, (segment[0], segment[1], snakeSize, snakeSize))
-		i += 1
 
 def snakeUpdate():
 	global dy
@@ -54,9 +51,10 @@ def snakeUpdate():
 	snakeSegmentLocations[0][1] += dy
 	
 	#Boundary check
-	if(snakeSegmentLocations[0][0] < 0 or snakeSegmentLocations[0][0] > resolution):
+
+	if(snakeSegmentLocations[0][0] < 0 or snakeSegmentLocations[0][0] > resolution - snakeSize/2):
 		exit(0)
-	elif (snakeSegmentLocations[0][1] < 0 or snakeSegmentLocations[0][1] > resolution):
+	elif (snakeSegmentLocations[0][1] < 0 or snakeSegmentLocations[0][1] > resolution - snakeSize/2):
 		exit(0)
 
 	if(foundApple):
