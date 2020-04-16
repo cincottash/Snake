@@ -1,6 +1,6 @@
 from globals import *
 from setup import *
-from exceptions import *
+#from exceptions import *
 import math
 global foundApple
 global direction
